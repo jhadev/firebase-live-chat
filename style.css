@@ -2,6 +2,11 @@ img {
   width: 100%;
 }
 
+.sent-msg {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
 @media screen and (max-width: 999px) {
   button {
     cursor: pointer;

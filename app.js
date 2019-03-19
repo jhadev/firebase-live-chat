@@ -74,6 +74,7 @@ $(document).ready(() => {
         // [START_EXCLUDE]
         localStorage.setItem("email", email)
         localStorage.setItem("uid", uid)
+        localStorage.setItem("avatar", photoURL)
         $("#sign-in-status").text("Signed in");
         $(".log-in").text("Sign out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
@@ -108,10 +109,12 @@ $(document).ready(() => {
     event.preventDefault()
     let username = localStorage.getItem("email")
     let uid = localStorage.getItem("uid")
+    let avatar = localStorage.getItem("avatar")
     let message = $("#message").val().trim()
     let messageObj = {
       user: username,
       uid: uid,
+      avatar: avatar,
       message: message
     }
     if (message !== "") {
@@ -125,12 +128,14 @@ $(document).ready(() => {
       let username = childSnapshot.val().user
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
-      $("#messages").append(`<div class="sent-msg ${uid}">${username}: ${message}</div>`)
+      $("#messages").append(`<div class="badge badge-pill sent-msg ${uid}">${username}: ${message}</div><br>`)
       let id = `.${uid}`
       if (uid === localStorage.getItem("uid")) {
-        $(id).css("color", "blue")
+        // $(id).css("color", "blue")
+        $(id).addClass("badge-primary")
       } else {
-        $(id).css("color", "darkgrey")
+        $(id).addClass("badge-light")
+        // $(id).css("color", "darkgrey")
       }
     })
   }
