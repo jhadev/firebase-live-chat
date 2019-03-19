@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   //Copy config object from firebase
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -14,6 +14,7 @@ $(document).ready(function() {
   initApp();
 });
 
+// let database = firebase.database()
 /**
  * Function called when clicking the Login/Logout button.
  */
@@ -49,7 +50,7 @@ function initApp() {
   firebase
     .auth()
     .getRedirectResult()
-    .then(function(result) {
+    .then(function (result) {
       if (result.credential) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const token = result.credential.accessToken;
@@ -62,7 +63,7 @@ function initApp() {
       // The signed-in user info.
       const user = result.user;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -85,7 +86,7 @@ function initApp() {
   // [END getidptoken]
   // Listening for auth state changes.
   // [START authstatelistener]
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
       const displayName = user.displayName;
@@ -96,14 +97,15 @@ function initApp() {
       const uid = user.uid;
       const providerData = user.providerData;
       // [START_EXCLUDE]
+      localStorage.setItem("email", email)
       $("#sign-in-status").text("Signed in");
       $(".log-in").text("Sign out");
       $("#account-details").text(JSON.stringify(user, null, "  "));
       $("#user").text(`Welcome,`);
       $("#email").text(email);
-      $(".start").append(
-        `<img src="https://user-images.githubusercontent.com/42519030/54242956-f424a380-44fc-11e9-89e3-76ece045f9ca.jpg"></img>`
-      );
+      // $(".start").append(
+      //   `<img src="https://user-images.githubusercontent.com/42519030/54242956-f424a380-44fc-11e9-89e3-76ece045f9ca.jpg"></img>`
+      // );
 
       // [END_EXCLUDE]
     } else {
@@ -123,4 +125,26 @@ function initApp() {
 
 $(document).on("click", ".log-in", event => {
   toggleSignIn();
+});
+
+$(document).on("click", "#send", (event) => {
+  console.log("clicked")
+  $("#messages").empty()
+  let username = localStorage.getItem("email")
+  let message = $("#message").val().trim()
+
+  let messageObj = {
+    user: username,
+    message: message
+  }
+  firebase.database().ref("chat").push(messageObj)
+
+  firebase.database().ref("chat").on("child_added", function (childSnapshot) {
+
+    let username = childSnapshot.val().user
+    let message = childSnapshot.val().message
+    console.log(message)
+
+    $("#messages").append(`<div id=${username}>${username}: ${message}</div>`)
+  })
 });
