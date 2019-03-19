@@ -20,6 +20,7 @@ $(document).ready(() => {
       firebase.auth().signInWithRedirect(provider);
     } else {
       firebase.auth().signOut();
+      localStorage.clear()
     }
   }
 
@@ -125,12 +126,12 @@ $(document).ready(() => {
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
       $("#messages").append(`<div class="sent-msg" id=${uid}>${username}: ${message}</div>`)
-      // let id = `#${uid}`
-      // if (uid === localStorage.getItem("uid")) {
-      //   $(id).css("color", "blue")
-      // } else {
-      //   $(id).css("color", "darkgrey")
-      // }
+      let id = `#${uid}`
+      if (uid === localStorage.getItem("uid")) {
+        $(id).css("color", "blue")
+      } else {
+        $(id).css("color", "darkgrey")
+      }
     })
   }
 
