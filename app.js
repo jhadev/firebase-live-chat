@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  //Copy config object from firebase
+
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
     authDomain: "fir-auth-test-40008.firebaseapp.com",
@@ -13,37 +13,16 @@ $(document).ready(function () {
 
   initApp();
 
-
-  // let database = firebase.database()
-  /**
-   * Function called when clicking the Login/Logout button.
-   */
-  // [START buttoncallback]
   function toggleSignIn() {
     if (!firebase.auth().currentUser) {
-      // [START createprovider]
       const provider = new firebase.auth.GoogleAuthProvider();
-      // [END createprovider]
-      // [START addscopes]
       provider.addScope("https://www.googleapis.com/auth/plus.login");
-      // [END addscopes]
-      // [START signin]
       firebase.auth().signInWithRedirect(provider);
-      // [END signin]
     } else {
-      // [START signout]
       firebase.auth().signOut();
-      // [END signout]
     }
   }
-  // [END buttoncallback]
-  /**
-   * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-   *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-   *    out, and that is where we update the UI.
-   *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
-   *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
-   */
+
   function initApp() {
     // Result from Redirect auth flow.
     // [START getidptoken]
@@ -76,16 +55,11 @@ $(document).ready(function () {
           alert(
             "You have already signed up with a different auth provider for that email."
           );
-          // If you are using multiple auth providers on your app you should handle linking
-          // the user's accounts here.
         } else {
           console.error(error);
         }
         // [END_EXCLUDE]
       });
-    // [END getidptoken]
-    // Listening for auth state changes.
-    // [START authstatelistener]
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
@@ -103,6 +77,7 @@ $(document).ready(function () {
         $("#account-details").text(JSON.stringify(user, null, "  "));
         $("#user").text(`Welcome,`);
         $("#email").text(email);
+        $("#send").prop("disabled", false);
         // $(".start").append(
         //   `<img src="https://user-images.githubusercontent.com/42519030/54242956-f424a380-44fc-11e9-89e3-76ece045f9ca.jpg"></img>`
         // );
@@ -117,36 +92,34 @@ $(document).ready(function () {
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
         $(".start, .welcome").empty();
-        // [END_EXCLUDE]
+        $("#send").prop("disabled", true);
       }
     });
-    // [END authstatelistener]
   }
 
   $(document).on("click", ".log-in", event => {
+    event.preventDefault()
     toggleSignIn();
   });
 
-  $(document).on("click", "#send", (event) => {
+  $(document).on("click", "#send", event => {
+    event.preventDefault()
     let username = localStorage.getItem("email")
     let message = $("#message").val().trim()
-
     let messageObj = {
       user: username,
       message: message
     }
-    firebase.database().ref("chat").push(messageObj)
-
+    if (message !== "") {
+      firebase.database().ref("chat").push(messageObj)
+    }
     $("#message").val("")
   });
 
   const checkForMessages = () => {
-    firebase.database().ref("chat").on("child_added", function (childSnapshot) {
-
+    firebase.database().ref("chat").on("child_added", (childSnapshot) => {
       let username = childSnapshot.val().user
       let message = childSnapshot.val().message
-      console.log(message)
-
       $("#messages").append(`<div id=${username}>${username}: ${message}</div>`)
     })
   }
