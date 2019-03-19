@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
 
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
   initApp();
 
-  function toggleSignIn() {
+  const toggleSignIn = () => {
     if (!firebase.auth().currentUser) {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope("https://www.googleapis.com/auth/plus.login");
@@ -29,7 +29,7 @@ $(document).ready(function () {
     firebase
       .auth()
       .getRedirectResult()
-      .then(function (result) {
+      .then((result) => {
         if (result.credential) {
           // This gives you a Google Access Token. You can use it to access the Google API.
           const token = result.credential.accessToken;
@@ -42,7 +42,7 @@ $(document).ready(function () {
         // The signed-in user info.
         const user = result.user;
       })
-      .catch(function (error) {
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -60,7 +60,7 @@ $(document).ready(function () {
         }
         // [END_EXCLUDE]
       });
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
         const displayName = user.displayName;
@@ -72,6 +72,7 @@ $(document).ready(function () {
         const providerData = user.providerData;
         // [START_EXCLUDE]
         localStorage.setItem("email", email)
+        localStorage.setItem("uid", uid)
         $("#sign-in-status").text("Signed in");
         $(".log-in").text("Sign out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
@@ -91,7 +92,7 @@ $(document).ready(function () {
         $("#account-details").text("null");
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
-        $(".start, .welcome").empty();
+        $(".start, .welcome, #messages").empty();
         $("#send").prop("disabled", true);
       }
     });
@@ -105,9 +106,11 @@ $(document).ready(function () {
   $(document).on("click", "#send", event => {
     event.preventDefault()
     let username = localStorage.getItem("email")
+    let uid = localStorage.getItem("uid")
     let message = $("#message").val().trim()
     let messageObj = {
       user: username,
+      uid: uid,
       message: message
     }
     if (message !== "") {
@@ -117,10 +120,17 @@ $(document).ready(function () {
   });
 
   const checkForMessages = () => {
-    firebase.database().ref("chat").on("child_added", (childSnapshot) => {
+    firebase.database().ref("chat").on("child_added", childSnapshot => {
       let username = childSnapshot.val().user
       let message = childSnapshot.val().message
-      $("#messages").append(`<div id=${username}>${username}: ${message}</div>`)
+      let uid = childSnapshot.val().uid
+      $("#messages").append(`<div class="sent-msg" id=${uid}>${username}: ${message}</div>`)
+      // let id = `#${uid}`
+      // if (uid === localStorage.getItem("uid")) {
+      //   $(id).css("color", "blue")
+      // } else {
+      //   $(id).css("color", "darkgrey")
+      // }
     })
   }
 

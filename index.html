@@ -34,17 +34,17 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Type your message.</span>
+    <div class="row justify-content-left mt-4">
+      <div class="col-6">
+        <form>
+          <div class="form-group">
+            <label for="message">Type your message.</label>
+            <textarea class="form-control" id="message" rows="3"></textarea>
           </div>
-          <textarea id="message" class="form-control" aria-label="With textarea"></textarea>
-        </div>
-        <div class="row">
-          <button disabled class="btn btn-primary ml-3 mt-2" id="send">Send</button>
-        </div>
+          <div class="row">
+            <button disabled class="btn btn-primary ml-3" id="send">Send</button>
+          </div>
+        </form>
       </div>
     </div>
     <br>
