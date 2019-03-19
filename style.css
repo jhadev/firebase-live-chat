@@ -1,0 +1,9 @@
+img {
+  width: 100%;
+}
+
+@media screen and (max-width: 999px) {
+  button {
+    cursor: pointer;
+  }
+}
