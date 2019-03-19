@@ -111,10 +111,11 @@ $(document).ready(() => {
     let uid = localStorage.getItem("uid")
     let avatar = localStorage.getItem("avatar")
     let message = $("#message").val().trim()
+    let timestamp = moment().format('lll')
     let messageObj = {
       user: username,
       uid: uid,
-      avatar: avatar,
+      timestamp: timestamp,
       message: message
     }
     if (message !== "") {
@@ -128,7 +129,8 @@ $(document).ready(() => {
       let username = childSnapshot.val().user
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
-      $("#messages").append(`<div class="badge badge-pill sent-msg ${uid}">${username}: ${message}</div><br>`)
+      let timestamp = childSnapshot.val().timestamp
+      $("#messages").append(`<small class="time">${timestamp}</small><div class="ml-2 badge badge-pill sent-msg ${uid}">${username}: ${message}</div><br>`)
       let id = `.${uid}`
       if (uid === localStorage.getItem("uid")) {
         // $(id).css("color", "blue")
