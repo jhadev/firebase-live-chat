@@ -137,7 +137,7 @@ $(document).ready(function () {
     }
     firebase.database().ref("chat").push(messageObj)
 
-
+    $("#message").val("")
   });
 
   const checkForMessages = () => {
