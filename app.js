@@ -125,13 +125,13 @@ $(document).ready(() => {
       let username = childSnapshot.val().user
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
-      $("#messages").append(`<div class="sent-msg" id=${uid}>${username}: ${message}</div>`)
-      // let id = `#${uid}`
-      // if (uid === localStorage.getItem("uid")) {
-      //   $(id).css("color", "blue")
-      // } else {
-      //   $(id).css("color", "darkgrey")
-      // }
+      $("#messages").append(`<div class="sent-msg ${uid}">${username}: ${message}</div>`)
+      let id = `.${uid}`
+      if (uid === localStorage.getItem("uid")) {
+        $(id).css("color", "blue")
+      } else {
+        $(id).css("color", "darkgrey")
+      }
     })
   }
 
