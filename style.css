@@ -15,6 +15,10 @@ img {
   font-weight: bold;
 }
 
+.log-in:hover {
+  color: rgb(189, 189, 189);
+}
+
 .time {
   font-style: italic;
   /* font-size: 10px; */
