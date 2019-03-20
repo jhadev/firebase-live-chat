@@ -131,17 +131,20 @@ $(document).ready(() => {
       let uid = childSnapshot.val().uid
       let timestamp = childSnapshot.val().timestamp
       let localUid = localStorage.getItem("uid")
-      $("#messages").append(`<div class="wrapper d-flex flex-row-reverse mb-2"><small class="time mx-2">${timestamp}</small><div class="badge badge-pill sent-msg ${uid}">${username}: ${message}</div></div>`)
+      const genId = Math.random()
+        .toString(36)
+        .substr(2, 8);
+      $("#messages").append(`<div class="${uid} wrapper d-flex mb-2"><small class="time mx-2">${timestamp}</small><div class="badge badge-pill sent-msg ${genId}">${username}: ${message}</div></div>`)
       let id = `.${uid}`
+      let badgeId = `.${genId}`
       if (uid === localUid) {
         // $(id).css("color", "blue")
-        $(id).addClass("badge-primary")
-        $(".wrapper").removeClass("flex-row")
-        $(".wrapper").addClass("flex-row-reverse")
+        $(id).addClass("flex-row")
+        $(badgeId).addClass("badge-primary")
       } else {
-        $(id).addClass("badge-light")
-        $(".wrapper").removeClass("flex-row-reverse")
-        $(".wrapper").addClass("flex-row")
+        $(id).addClass("flex-row-reverse badge-light")
+        $(badgeId).addClass("badge-light")
+
         // $(id).css("color", "darkgrey")
       }
     })
