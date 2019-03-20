@@ -134,7 +134,12 @@ $(document).ready(() => {
       const genId = Math.random()
         .toString(36)
         .substr(2, 8);
-      $("#messages").append(`<div class="${uid} wrapper d-flex mb-2"><small class="time mx-2">${timestamp}</small><div class="badge badge-pill sent-msg ${genId}">${username}: ${message}</div></div>`)
+      $("#messages").append(`
+      <div class="${uid} wrapper d-flex mb-2">
+        <small class="time mx-1">${timestamp}</small>
+        <small class="user-name mx-2">${username}</small>
+        <div class="badge badge-pill sent-msg ${genId}">${message}</div>
+      </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
       if (uid === localUid) {
@@ -143,7 +148,7 @@ $(document).ready(() => {
         $(badgeId).addClass("badge-primary")
       } else {
         $(id).addClass("flex-row")
-        $(badgeId).addClass("badge-light")
+        $(badgeId).addClass("badge-secondary")
 
         // $(id).css("color", "darkgrey")
       }
