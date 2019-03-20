@@ -183,10 +183,13 @@ $(document).ready(() => {
     $("#message").val("");
     const alertDiv = $("<div>");
     alertDiv
-      .addClass("mt-2 alert alert-danger")
+      .addClass("mt-4 alert alert-danger")
       .attr("role", "alert")
       .attr("data-dismiss", "alert")
     $(".form-group").append(alertDiv);
   };
 
+  $(".alert").on("click", event => {
+    $(".alert").alert("close");
+  })
 });
