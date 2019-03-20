@@ -159,19 +159,19 @@ $(document).ready(() => {
         .toString(36)
         .substr(2, 8);
       $("#messages").append(`
-      <div class="${uid} wrapper d-flex mb-3">
-        <small class="time mb-2">${timestamp}</small>
-        <small class="user-name mx-2">${username}</small>
+      <div class="${uid} wrapper flex-column d-flex mb-3">
+        <small class="time">${timestamp}</small>  
+        <small class="user-name mb-1">${username}</small>
         <div class="badge badge-pill sent-msg ${genId}">${message}</div>
-      </div>`)
+        </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
       if (uid === localUid) {
         // $(id).css("color", "blue")
-        $(id).addClass("flex-row-reverse")
+        $(id).addClass("align-items-end")
         $(badgeId).addClass("badge-primary")
       } else {
-        $(id).addClass("flex-row")
+        $(id).addClass("align-items-start")
         $(badgeId).addClass("badge-secondary")
 
         // $(id).css("color", "darkgrey")

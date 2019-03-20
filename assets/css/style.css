@@ -4,11 +4,11 @@ img {
 
 .sent-msg {
   font-size: 16px;
-  line-height: 20px;
+  /* line-height: 20px; */
 }
 
 .wrapper {
-  height: 30px;
+  /* height: 30px; */
 }
 
 .navbar-brand {
@@ -22,17 +22,17 @@ img {
 .time {
   font-style: italic;
   /* font-size: 10px; */
-  line-height: 30px;
+  /* line-height: 30px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: middle; */
 }
 
 .user-name {
-  line-height: 30px;
+  /* line-height: 30px; */
   font-weight: bold;
   /* font-size: 12px; */
-  display: inline-block;
-  vertical-align: middle;
+  /* display: inline-block;
+  vertical-align: middle; */
 }
 
 .badge-secondary {
@@ -43,23 +43,13 @@ img {
   button {
     cursor: pointer;
   }
-
   .time {
     font-style: italic;
     font-size: 10px;
-    line-height: 30px;
-    display: inline-block;
-    vertical-align: middle;
   }
-
   .user-name {
-    line-height: 30px;
-    font-weight: bold;
     font-size: 12px;
-    display: inline-block;
-    vertical-align: middle;
   }
-
   .sent-msg {
     font-size: 12px;
     /* line-height: 20px; */
