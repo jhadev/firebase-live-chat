@@ -21,7 +21,8 @@ img {
   font-weight: bold;
 }
 
-.log-in:hover {
+.log-in:hover,
+a:hover {
   color: rgb(189, 189, 189);
 }
 
@@ -41,21 +42,37 @@ img {
   vertical-align: middle; */
 }
 
-.badge-secondary {
-  /* background-color: #646464 !important */
+.sticky-footer {
+  /* box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15) !important; */
+  position: sticky !important;
+  bottom: 0px;
+  z-index: 0;
+}
+
+.github,
+a {
+  color: white;
+}
+
+.icon-large {
+  font-size: 24px;
+  margin-right: 5px;
 }
 
 @media screen and (max-width: 999px) {
   button {
     cursor: pointer;
   }
+
   .time {
     font-style: italic;
     font-size: 12px;
   }
+
   .user-name {
     font-size: 14px;
   }
+
   .alert {
     font-size: 12px;
     cursor: pointer;

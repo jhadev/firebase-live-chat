@@ -166,6 +166,9 @@ $(document).ready(() => {
         </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
+      $('html, body').animate({
+        scrollTop: $(document).height()
+      }, 'fast');
       if (uid === localUid) {
         // $(id).css("color", "blue")
         $(id).addClass("align-items-end")
