@@ -43,4 +43,25 @@ img {
   button {
     cursor: pointer;
   }
+
+  .time {
+    font-style: italic;
+    font-size: 10px;
+    line-height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .user-name {
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .sent-msg {
+    font-size: 12px;
+    /* line-height: 20px; */
+  }
 }
