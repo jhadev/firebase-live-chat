@@ -130,15 +130,18 @@ $(document).ready(() => {
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
       let timestamp = childSnapshot.val().timestamp
-      $("#messages").append(`<div class="wrapper mb-2"><small class="time mx-2">${timestamp}</small><div class="badge badge-pill sent-msg ${uid}">${username}: ${message}</div></div>`)
+      let localUid = localStorage.getItem("uid")
+      $("#messages").append(`<div class="wrapper d-flex flex-row-reverse mb-2"><small class="time mx-2">${timestamp}</small><div class="badge badge-pill sent-msg ${uid}">${username}: ${message}</div></div>`)
       let id = `.${uid}`
-      if (uid === localStorage.getItem("uid")) {
+      if (uid === localUid) {
         // $(id).css("color", "blue")
-        $(id).addClass("badge-primary text-right")
-        $(".wrapper").addClass("d-flex flex-row-reverse")
+        $(id).addClass("badge-primary")
+        $(".wrapper").removeClass("flex-row")
+        $(".wrapper").addClass("flex-row-reverse")
       } else {
-        $(id).addClass("text-left badge-light")
-        $(".wrapper").addClass("d-flex flex-row")
+        $(id).addClass("badge-light")
+        $(".wrapper").removeClass("flex-row-reverse")
+        $(".wrapper").addClass("flex-row")
         // $(id).css("color", "darkgrey")
       }
     })
