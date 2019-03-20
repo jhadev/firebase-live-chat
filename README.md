@@ -1,3 +1,5 @@
-# firebase-oauth-redirect
+# firebase-live-chat
 
-### Google OAuth with Firebase.
+### A real time chat application using Google Firebase and Google OAuth.
+
+(Chat Here)[https://jhadev.github.io/firebase-live-chat/]
