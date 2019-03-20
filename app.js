@@ -76,7 +76,7 @@ $(document).ready(() => {
         localStorage.setItem("uid", uid)
         localStorage.setItem("avatar", photoURL)
         $("#sign-in-status").text("Signed in");
-        $(".log-in").text("Sign out");
+        $(".log-in").text("Sign Out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
         $("#user").text(`Welcome,`);
         $("#email").text(email);
@@ -90,7 +90,7 @@ $(document).ready(() => {
         // User is signed out.
         // [START_EXCLUDE]
         $("#sign-in-status").text("Signed out");
-        $(".log-in").text("Sign in with Google");
+        $(".log-in").text("Sign In With Google");
         $("#account-details").text("null");
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
@@ -160,7 +160,7 @@ $(document).ready(() => {
         .substr(2, 8);
       $("#messages").append(`
       <div class="${uid} wrapper d-flex mb-3">
-        <small class="time">${timestamp}</small>
+        <small class="time mb-2">${timestamp}</small>
         <small class="user-name mx-2">${username}</small>
         <div class="badge badge-pill sent-msg ${genId}">${message}</div>
       </div>`)
