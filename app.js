@@ -118,10 +118,23 @@ $(document).ready(() => {
       timestamp: timestamp,
       message: message
     }
-    if (message !== "") {
+    if (message !== "" && message.length <= 70) {
       firebase.database().ref("chat").push(messageObj)
+      $("#message").val("")
+      $(".alert").alert("close");
+    } else {
+      if (message.length > 70) {
+        handleErrors()
+        $(".alert").text(`You typed ${message.length} characters. The maximum is 70`);
+        $("#message").val("")
+      }
+      if (message === "") {
+        handleErrors()
+        $(".alert").text(`Please enter a valid value.`)
+        $("#message").val("")
+      }
     }
-    $("#message").val("")
+
   });
 
   const checkForMessages = () => {
@@ -135,8 +148,8 @@ $(document).ready(() => {
         .toString(36)
         .substr(2, 8);
       $("#messages").append(`
-      <div class="${uid} wrapper d-flex mb-2">
-        <small class="time mx-1">${timestamp}</small>
+      <div class="${uid} wrapper d-flex mb-3">
+        <small class="time">${timestamp}</small>
         <small class="user-name mx-2">${username}</small>
         <div class="badge badge-pill sent-msg ${genId}">${message}</div>
       </div>`)
@@ -154,5 +167,15 @@ $(document).ready(() => {
       }
     })
   }
+
+  const handleErrors = () => {
+    $("#message").val("");
+    const alertDiv = $("<div>");
+    alertDiv
+      .addClass("mt-2 alert alert-danger")
+      .attr("role", "alert")
+      .attr("data-dismiss", "alert")
+    $(".form-group").append(alertDiv);
+  };
 
 });
