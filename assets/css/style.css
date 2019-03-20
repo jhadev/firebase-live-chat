@@ -54,4 +54,9 @@ img {
     font-size: 14px;
     /* line-height: 20px; */
   }
+
+  .alert {
+    font-size: 12px;
+    cursor: pointer;
+  }
 }
