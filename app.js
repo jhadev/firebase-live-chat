@@ -139,10 +139,10 @@ $(document).ready(() => {
       let badgeId = `.${genId}`
       if (uid === localUid) {
         // $(id).css("color", "blue")
-        $(id).addClass("flex-row")
+        $(id).addClass("flex-row-reverse")
         $(badgeId).addClass("badge-primary")
       } else {
-        $(id).addClass("flex-row-reverse badge-light")
+        $(id).addClass("flex-row")
         $(badgeId).addClass("badge-light")
 
         // $(id).css("color", "darkgrey")
