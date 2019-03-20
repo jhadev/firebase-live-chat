@@ -79,7 +79,7 @@ $(document).ready(() => {
         $(".log-in").text("Sign Out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
         $("#user").text(`Welcome,`);
-        $("#email").text(email);
+        $(".email").text(email);
         $("#send").prop("disabled", false);
         // $(".start").append(
         //   `<img src="https://user-images.githubusercontent.com/42519030/54242956-f424a380-44fc-11e9-89e3-76ece045f9ca.jpg"></img>`
@@ -94,7 +94,7 @@ $(document).ready(() => {
         $("#account-details").text("null");
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
-        $(".start, .welcome, #messages").empty();
+        $(".start, .welcome, #messages, .email").empty();
         $("#send").prop("disabled", true);
       }
     });

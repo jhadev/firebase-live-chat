@@ -11,6 +11,10 @@ img {
   height: 30px;
 }
 
+.navbar-brand {
+  font-weight: bold;
+}
+
 .time {
   font-style: italic;
   /* font-size: 10px; */
