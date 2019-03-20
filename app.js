@@ -105,6 +105,16 @@ $(document).ready(() => {
     toggleSignIn();
   });
 
+  let textMax = 70;
+  $('#count-message').html(`${textMax} chars remaining`);
+
+  $('#message').keyup(function () {
+    let textLength = $('#message').val().length;
+    let textRemaining = textMax - textLength;
+
+    $('#count-message').html(`${textRemaining} chars remaining`);
+  });
+
   $(document).on("click", "#send", event => {
     event.preventDefault()
     let username = localStorage.getItem("email")
@@ -122,16 +132,17 @@ $(document).ready(() => {
       firebase.database().ref("chat").push(messageObj)
       $("#message").val("")
       $(".alert").alert("close");
+      $('#count-message').html(`${textMax} chars remaining`)
     } else {
       if (message.length > 70) {
         handleErrors()
         $(".alert").text(`You typed ${message.length} characters. The maximum is 70`);
-        $("#message").val("")
+        $('#count-message').html(`${textMax} chars remaining`)
       }
       if (message === "") {
         handleErrors()
         $(".alert").text(`Please enter a valid value.`)
-        $("#message").val("")
+        $('#count-message').html(`${textMax} chars remaining`);
       }
     }
 
