@@ -5,6 +5,9 @@ img {
 .sent-msg {
   font-size: 16px;
   line-height: 20px;
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .wrapper {
@@ -22,8 +25,9 @@ img {
 .time {
   font-style: italic;
   /* font-size: 10px; */
-  line-height: 30px;
-  display: inline-block;
+  line-height: 0px;
+  display: block;
+  margin-bottom: 10px;
   vertical-align: middle;
 }
 
@@ -31,7 +35,9 @@ img {
   line-height: 30px;
   font-weight: bold;
   /* font-size: 12px; */
-  display: inline-block;
+  display: block;
+  position: absolute;
+  margin-bottom: 10px;
   vertical-align: middle;
 }
 
@@ -44,24 +50,36 @@ img {
     cursor: pointer;
   }
 
+  .sent-msg {
+    font-size: 8px;
+    line-height: 20px;
+    position: relative;
+    margin-left: 8%;
+    margin-right: 8%;
+    word-wrap: break-word;
+  }
+
+  .badge {
+    font-size: 100% !important;
+  }
+
   .time {
     font-style: italic;
     font-size: 10px;
-    line-height: 30px;
-    display: inline-block;
+    line-height: 0px;
+    display: block;
+    margin-bottom: 10px;
     vertical-align: middle;
   }
 
   .user-name {
     line-height: 30px;
     font-weight: bold;
-    font-size: 12px;
-    display: inline-block;
+    font-size: 10px;
+    display: block;
+    position: absolute;
+    margin-bottom: 10px;
     vertical-align: middle;
   }
 
-  .sent-msg {
-    font-size: 12px;
-    /* line-height: 20px; */
-  }
 }

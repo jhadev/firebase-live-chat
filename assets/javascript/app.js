@@ -161,7 +161,7 @@ $(document).ready(() => {
       $("#messages").append(`
       <div class="${uid} wrapper d-flex mb-3">
         <small class="time mb-2">${timestamp}</small>
-        <small class="user-name mx-2">${username}</small>
+        <small class="user-name">${username}</small>
         <div class="badge badge-pill sent-msg ${genId}">${message}</div>
       </div>`)
       let id = `.${uid}`
