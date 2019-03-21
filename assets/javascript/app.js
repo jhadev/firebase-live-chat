@@ -146,7 +146,7 @@ $(document).ready(() => {
       <div class="${uid} wrapper flex-column d-flex mb-3">
         <small class="time">${timestamp}</small>  
         <small class="user-name mb-1">${username}</small>
-        <div class="badge badge-pill sent-msg ${genId}">${message.linkify()}</div>
+        <div class="badge sent-msg ${genId}">${message.linkify()}</div>
       </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
@@ -192,29 +192,21 @@ $(document).ready(() => {
     $('#count-message').html(`${textRemaining} chars remaining`);
   });
 
-  //detect links in message strings
+  //detect links and images in message strings
   if (!String.linkify) {
     String.prototype.linkify = function () {
       let urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
-      // let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
-
-      return this
-        .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
-        .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
-        .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
-      // .replace(imgUrlPattern, '<img class="msg-img img-fluid" src="$&">')
+      let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
+      if (imgUrlPattern) {
+        let img = this.replace(urlPattern, `<a class="msg-link" href="$&" target="_blank"><img class="msg-img img-fluid" src="$&"></a>`)
+        return this
+          .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
+          .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
+          .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
+          .replace(imgUrlPattern, img)
+      }
     };
   }
-
-  // if (!String.img) {
-  //   String.prototype.img = function () {
-  //     let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
-
-  //     return this
-  //       .replace(imgUrlPattern, '<img class="msg-img img-fluid" src="$&">')
-  //   };
-  // }
-
 });
