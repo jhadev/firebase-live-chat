@@ -4,4 +4,4 @@
 
 [Chat Here](https://jhadev.github.io/firebase-live-chat/)
 
-![live-chat-demo](https://user-images.githubusercontent.com/42519030/54730694-a8a77080-4b60-11e9-8925-ffbb23ae0e1c.jpg)
+![live-chat-demo](https://user-images.githubusercontent.com/42519030/54730812-4602a480-4b61-11e9-8086-9e211335a2d8.jpg)
