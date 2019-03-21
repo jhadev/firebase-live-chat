@@ -77,4 +77,10 @@ a {
     font-size: 12px;
     cursor: pointer;
   }
+
+  .github,
+  .log-in {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 }

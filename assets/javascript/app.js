@@ -22,7 +22,7 @@ $(document).ready(() => {
       firebase.auth().signOut();
       localStorage.clear()
     }
-  }
+  };
 
   function initApp() {
     // Result from Redirect auth flow.
@@ -98,22 +98,7 @@ $(document).ready(() => {
         $("#send").prop("disabled", true);
       }
     });
-  }
-
-  $(document).on("click", ".log-in", event => {
-    event.preventDefault()
-    toggleSignIn();
-  });
-
-  let textMax = 70;
-  $('#count-message').html(`${textMax} chars remaining`);
-
-  $('#message').keyup(function () {
-    let textLength = $('#message').val().length;
-    let textRemaining = textMax - textLength;
-
-    $('#count-message').html(`${textRemaining} chars remaining`);
-  });
+  };
 
   $(document).on("click", "#send", event => {
     event.preventDefault()
@@ -144,8 +129,7 @@ $(document).ready(() => {
         $(".alert").text(`Please enter a valid value.`)
         $('#count-message').html(`${textMax} chars remaining`);
       }
-    }
-
+    };
   });
 
   const checkForMessages = () => {
@@ -163,24 +147,21 @@ $(document).ready(() => {
         <small class="time">${timestamp}</small>  
         <small class="user-name mb-1">${username}</small>
         <div class="badge badge-pill sent-msg ${genId}">${message}</div>
-        </div>`)
+      </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
       $('html, body').animate({
         scrollTop: $(document).height()
       }, 'fast');
       if (uid === localUid) {
-        // $(id).css("color", "blue")
         $(id).addClass("align-items-end")
         $(badgeId).addClass("badge-primary")
       } else {
         $(id).addClass("align-items-start")
         $(badgeId).addClass("badge-secondary")
-
-        // $(id).css("color", "darkgrey")
       }
-    })
-  }
+    });
+  };
 
   const handleErrors = () => {
     $("#message").val("");
@@ -194,5 +175,20 @@ $(document).ready(() => {
 
   $(".alert").on("click", event => {
     $(".alert").alert("close");
-  })
+  });
+
+  $(document).on("click", ".log-in", event => {
+    event.preventDefault()
+    toggleSignIn();
+  });
+
+  let textMax = 70;
+  $('#count-message').html(`${textMax} chars remaining`);
+
+  $('#message').keyup(function () {
+    let textLength = $('#message').val().length;
+    let textRemaining = textMax - textLength;
+
+    $('#count-message').html(`${textRemaining} chars remaining`);
+  });
 });
