@@ -17,8 +17,16 @@ img {
   /* height: 30px; */
 }
 
+img {
+  width: 100%;
+}
+
 .navbar-brand {
   font-weight: bold;
+}
+
+.msg-link {
+  text-decoration: underline;
 }
 
 .log-in:hover,
@@ -64,21 +72,17 @@ a {
   button {
     cursor: pointer;
   }
-
   .time {
     font-style: italic;
     font-size: 12px;
   }
-
   .user-name {
     font-size: 14px;
   }
-
   .alert {
     font-size: 12px;
     cursor: pointer;
   }
-
   .github,
   .log-in {
     font-size: 14px;
