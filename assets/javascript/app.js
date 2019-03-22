@@ -1,5 +1,6 @@
-$(document).ready(() => {
+$(document).ready(function () {
 
+  // firebase config
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
     authDomain: "fir-auth-test-40008.firebaseapp.com",
@@ -13,6 +14,7 @@ $(document).ready(() => {
 
   initApp();
 
+  // Google OAuth with redirect
   const toggleSignIn = () => {
     if (!firebase.auth().currentUser) {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -100,42 +102,7 @@ $(document).ready(() => {
     });
   };
 
-  $(document).on("click", "#send", event => {
-    event.preventDefault()
-    let username = localStorage.getItem("email")
-    let uid = localStorage.getItem("uid")
-    let avatar = localStorage.getItem("avatar")
-    let message = $("#message").val().trim()
-    let timestamp = moment().format('lll')
-    let messageObj = {
-      user: username,
-      uid: uid,
-      timestamp: timestamp,
-      message: message,
-      avatar: avatar
-    }
-    if (message !== "" && message.length <= 140) {
-      firebase.database().ref("chat").push(messageObj)
-      $("#message").val("")
-      $(".alert").alert("close");
-      $('#count-message').html(`${textMax} chars remaining`)
-      $('html, body').animate({
-        scrollTop: $(document).height()
-      }, 'fast');
-    } else {
-      if (message.length > 140) {
-        handleErrors()
-        $(".alert").text(`You typed ${message.length} characters. The maximum is 140`);
-        $('#count-message').html(`${textMax} chars remaining`)
-      }
-      if (message === "") {
-        handleErrors()
-        $(".alert").text(`Please enter a valid value.`)
-        $('#count-message').html(`${textMax} chars remaining`);
-      }
-    };
-  });
-
+  // poll firebase when new message is added and write to page
   const checkForMessages = () => {
     firebase.database().ref("chat").on("child_added", childSnapshot => {
       let username = childSnapshot.val().user
@@ -166,6 +133,44 @@ $(document).ready(() => {
     });
   };
 
+  // char counter
+  let textMax = 140;
+  $('#count-message').html(`${textMax} chars remaining`);
+
+  $('#message').keyup(function () {
+    let textLength = $('#message').val().length;
+    let textRemaining = textMax - textLength;
+
+    $('#count-message').html(`${textRemaining} chars remaining`);
+  });
+
+  // click functions
+  $(".alert").on("click", event => {
+    $(".alert").alert("close");
+  });
+
+  $(document).on("click", "#send", event => {
+    event.preventDefault()
+    packageMessage(textMax, handleErrors);
+  });
+
+  $(document).on("click", ".log-in", event => {
+    event.preventDefault()
+    toggleSignIn();
+  });
+
+  $(document).on("click", ".sticky", event => {
+    event.preventDefault()
+    if ($(".footer").hasClass("sticky-footer")) {
+      $(".footer").removeClass("sticky-footer")
+      $(".sticky").text("Show Input")
+    } else {
+      $(".footer").addClass("sticky-footer")
+      $(".sticky").text("Hide Input")
+    }
+  })
+
+  //input message functions
   const handleErrors = () => {
     $("#message").val("");
     const alertDiv = $("<div>");
@@ -176,24 +181,40 @@ $(document).ready(() => {
     $(".form-group").append(alertDiv);
   };
 
-  $(".alert").on("click", event => {
-    $(".alert").alert("close");
-  });
-
-  $(document).on("click", ".log-in", event => {
-    event.preventDefault()
-    toggleSignIn();
-  });
-
-  let textMax = 140;
-  $('#count-message').html(`${textMax} chars remaining`);
-
-  $('#message').keyup(function () {
-    let textLength = $('#message').val().length;
-    let textRemaining = textMax - textLength;
-
-    $('#count-message').html(`${textRemaining} chars remaining`);
-  });
+  const packageMessage = (textMax, handleErrors) => {
+    let username = localStorage.getItem("email");
+    let uid = localStorage.getItem("uid");
+    let avatar = localStorage.getItem("avatar");
+    let message = $("#message").val().trim();
+    let timestamp = moment().format('lll');
+    let messageObj = {
+      user: username,
+      uid: uid,
+      timestamp: timestamp,
+      message: message,
+      avatar: avatar
+    };
+    if (message !== "" && message.length <= 140) {
+      firebase.database().ref("chat").push(messageObj);
+      $("#message").val("");
+      $(".alert").alert("close");
+      $('#count-message').html(`${textMax} chars remaining`);
+      $('html, body').animate({
+        scrollTop: $(document).height()
+      }, 'fast');
+    } else {
+      if (message.length > 140) {
+        handleErrors();
+        $(".alert").text(`You typed ${message.length} characters. The maximum is 140`);
+        $('#count-message').html(`${textMax} chars remaining`);
+      }
+      if (message === "") {
+        handleErrors();
+        $(".alert").text(`Please enter a valid value.`);
+        $('#count-message').html(`${textMax} chars remaining`);
+      }
+    };
+  }
 
   //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {
@@ -206,19 +227,19 @@ $(document).ready(() => {
       let audioUrlPattern = /(https?:\/\/.*\.(?:mp3))/i
 
       let img = this.replace(urlPattern, `
-      $1<a class="msg-link" href="$&" target="_blank">
-        <img class="msg-img img-fluid rounded img-thumbnail" src="$&">
-      </a>`)
+        $1<a class="msg-link" href="$&" target="_blank">
+          <img class="msg-img img-fluid rounded img-thumbnail" src="$&">
+        </a>`)
 
       let video = this.replace(urlPattern, `
-      $1<video class="msg-video img-thumbnail" controls>
-        <source src="$&" type="video/mp4">
-      </video>`)
+        $1<video class="msg-video img-thumbnail" controls>
+          <source src="$&" type="video/mp4">
+        </video>`)
 
       let audio = this.replace(urlPattern, `
-      $1<audio controls>
-        <source src="$&" type="audio/mpeg">
-      </audio>`)
+        $1<audio controls>
+          <source src="$&" type="audio/mpeg">
+        </audio>`)
 
       return this
         .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
@@ -229,15 +250,4 @@ $(document).ready(() => {
         .replace(audioUrlPattern, audio)
     };
   }
-
-  $(document).on("click", ".sticky", event => {
-    event.preventDefault()
-    if ($(".footer").hasClass("sticky-footer")) {
-      $(".footer").removeClass("sticky-footer")
-      $(".sticky").text("Show Input")
-    } else {
-      $(".footer").addClass("sticky-footer")
-      $(".sticky").text("Hide Input")
-    }
-  })
 });
