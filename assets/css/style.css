@@ -112,6 +112,7 @@ a {
 
   .sticky-footer {
     position: fixed !important;
+    width: 100%;
   }
 
   .github,
