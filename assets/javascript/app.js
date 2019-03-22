@@ -200,19 +200,12 @@ $(document).ready(() => {
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
       let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
 
-      let img = this.replace(imgUrlPattern, `$1<a class="msg-link" href="$2" target="_blank"><img class="msg-img img-fluid" src="$&"></a>`)
+      let img = this.replace(urlPattern, `$1<a class="msg-link" href="$&" target="_blank"><img class="msg-img img-fluid rounded" src="$&"></a>`)
       return this
         .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
         .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
         .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
         .replace(imgUrlPattern, img)
-
-      // let img = this.replace(urlPattern, `$1<a class="msg-link" href="$&" target="_blank"><img class="msg-img img-fluid rounded" src="$&"></a>`)
-      // return this
-      //   .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
-      //   .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
-      //   .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
-      //   .replace(imgUrlPattern, img)
     };
   }
 });
