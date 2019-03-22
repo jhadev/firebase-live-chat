@@ -118,6 +118,9 @@ $(document).ready(() => {
       $("#message").val("")
       $(".alert").alert("close");
       $('#count-message').html(`${textMax} chars remaining`)
+      $('html, body').animate({
+        scrollTop: $(document).height()
+      }, 'fast');
     } else {
       if (message.length > 140) {
         handleErrors()
@@ -150,9 +153,6 @@ $(document).ready(() => {
       </div>`)
       let id = `.${uid}`
       let badgeId = `.${genId}`
-      $('html, body').animate({
-        scrollTop: $(document).height()
-      }, 'fast');
       if (uid === localUid) {
         $(id).addClass("align-items-end")
         $(badgeId).addClass("badge-primary")
