@@ -18,6 +18,12 @@
   /* line-height: 20px; */
 }
 
+.sent-msg::selection,
+a::selection {
+  color: white;
+  background: #fa7203
+}
+
 .avatar {
   height: 20px;
   width: 20px;
