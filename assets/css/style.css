@@ -1,5 +1,6 @@
 img {
   width: 100%;
+  margin: 2% auto;
 }
 
 .sent-msg {
@@ -16,10 +17,6 @@ img {
 
 .wrapper {
   /* height: 30px; */
-}
-
-img {
-  margin: 10px auto;
 }
 
 .navbar-brand {
@@ -41,6 +38,8 @@ img {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+  color: rgb(248, 163, 6);
+  font-size: 0.9rem;
 }
 
 .log-in:hover,
@@ -74,6 +73,7 @@ a:hover {
 
 video {
   width: 100%;
+  margin: 2% auto;
 }
 
 .github,
@@ -98,21 +98,7 @@ a {
     font-size: 14px;
   }
   .msg-link {
-    text-decoration: underline;
-    margin-bottom: 2px;
-    /* These are technically the same, but use both */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break: break-all;
-    /* Instead use this non-standard one: */
-    word-break: break-word;
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    font-size: 0.8rem;
   }
   .alert {
     font-size: 12px;
