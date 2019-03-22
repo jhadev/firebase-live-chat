@@ -2,7 +2,7 @@
 
 ### A real time chat application using Google Firebase and Google OAuth.
 
-Updated to allow links, images, and video through urls. Supports inline png, gif, jpg, jpeg images and mp4 video. In current state the hyperlinks that show up when an image or video is posted are dead if there is a message posted along with the image, but clicking the image itself will open the url in a new tab.
+Updated to allow links, images, audio, video through urls. Supports inline png, gif, jpg, jpeg images, mp4 video, and mp3 sounds.
 
 [Chat Here](https://jhadev.github.io/firebase-live-chat/)
 
