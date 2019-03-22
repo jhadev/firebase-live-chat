@@ -72,6 +72,10 @@ a:hover {
   z-index: 0;
 }
 
+video {
+  width: 100%;
+}
+
 .github,
 a {
   color: white;

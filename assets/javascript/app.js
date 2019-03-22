@@ -199,13 +199,18 @@ $(document).ready(() => {
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
       let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
+      let videoUrlPattern = /(https?:\/\/.*\.(?:mp4))/i
 
       let img = this.replace(urlPattern, `$1<a class="msg-link" href="$&" target="_blank"><img class="msg-img rounded" src="$&"></a>`)
+      let video = this.replace(urlPattern, `$1<video controls>
+      <source src="$&" type="video/mp4">
+    </video>`)
       return this
         .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
         .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
         .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
         .replace(imgUrlPattern, img)
+        .replace(videoUrlPattern, video)
     };
   }
 });
