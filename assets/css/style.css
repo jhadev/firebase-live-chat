@@ -1,4 +1,4 @@
-img {
+.msg-img {
   width: 100%;
   margin: 2% auto;
 }
@@ -13,6 +13,11 @@ img {
   padding: 5px;
   /* text-align: left !important; */
   /* line-height: 20px; */
+}
+
+.avatar {
+  height: 20px;
+  width: 20px;
 }
 
 .wrapper {
@@ -49,18 +54,10 @@ a:hover {
 
 .time {
   font-style: italic;
-  /* font-size: 10px; */
-  /* line-height: 30px;
-  display: inline-block;
-  vertical-align: middle; */
 }
 
 .user-name {
-  /* line-height: 30px; */
   font-weight: bold;
-  /* font-size: 12px; */
-  /* display: inline-block;
-  vertical-align: middle; */
 }
 
 .sticky-footer {

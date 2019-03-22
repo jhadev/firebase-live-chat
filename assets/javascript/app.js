@@ -111,7 +111,8 @@ $(document).ready(() => {
       user: username,
       uid: uid,
       timestamp: timestamp,
-      message: message
+      message: message,
+      avatar: avatar
     }
     if (message !== "" && message.length <= 140) {
       firebase.database().ref("chat").push(messageObj)
@@ -141,24 +142,26 @@ $(document).ready(() => {
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
       let timestamp = childSnapshot.val().timestamp
+      let avatar = childSnapshot.val().avatar
       let localUid = localStorage.getItem("uid")
-      const genId = Math.random()
+      const genRandomString = Math.random()
         .toString(36)
         .substr(2, 8);
       $("#messages").append(`
       <div class="${uid} wrapper flex-column d-flex mb-3">
         <small class="time">${timestamp}</small>  
+        <!-- <img src="${avatar}" class="avatar text-right"> -->
         <small class="user-name mb-1">${username}</small>
-        <div class="badge sent-msg ${genId}">${message.linkify()}</div>
+        <div class="badge sent-msg ${genRandomString}">${message.linkify()}</div>
       </div>`)
-      let id = `.${uid}`
-      let badgeId = `.${genId}`
+      let uidClass = `.${uid}`
+      let badgeClass = `.${genRandomString}`
       if (uid === localUid) {
-        $(id).addClass("align-items-end")
-        $(badgeId).addClass("badge-primary")
+        $(uidClass).addClass("align-items-end")
+        $(badgeClass).addClass("badge-primary")
       } else {
-        $(id).addClass("align-items-start")
-        $(badgeId).addClass("badge-secondary")
+        $(uidClass).addClass("align-items-start")
+        $(badgeClass).addClass("badge-secondary")
       }
     });
   };
@@ -192,7 +195,7 @@ $(document).ready(() => {
     $('#count-message').html(`${textRemaining} chars remaining`);
   });
 
-  //detect links and images in message strings
+  //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {
     String.prototype.linkify = function () {
       let urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
