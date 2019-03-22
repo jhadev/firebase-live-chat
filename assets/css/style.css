@@ -87,6 +87,21 @@ a {
   margin-right: 5px;
 }
 
+.jumbotron {
+  padding: 20px;
+  background: #fa7203
+}
+
+.welcome {
+  background: #fa7203;
+  margin: auto;
+  padding: 10px;
+}
+
+.fire-icon {
+  color: #fa7203
+}
+
 @media screen and (max-width: 999px) {
   button {
     cursor: pointer;

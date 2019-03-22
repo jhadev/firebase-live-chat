@@ -14,7 +14,7 @@
 
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Firebase Live Chat</a>
+    <a class="navbar-brand" href="#"><i class="fas fa-fire-alt fire-icon"></i>&nbspFirebase Live Chat</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -38,11 +38,11 @@
     </div>
   </nav>
   <div class="container">
-    <div class="jumbotron-fluid bg-light text-center my-3">
-      <h1 class="text-center">Firebase Live Chat</h1>
+    <div class="jumbotron text-center bg-light my-3 text-light">
+      <h1 class="text-center"><i class="fas fa-fire-alt fire-icon"></i></h1>
       <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="welcome text-center mb-3">
+        <div class="col-md-6 col-12">
+          <div class="welcome rounded text-center mb-3">
             <h3 id="user">
             </h3>
             <h4 class="email"></h4>
@@ -61,15 +61,17 @@
       </div>
     </div>
     <div class="row footer justify-content-center mt-4">
-      <div class="col-md-8 col-12">
+      <div class="col-md-12 col-12">
         <form>
           <div class="form-group">
-            <label for="message">Type your message.</label>
+            <label class="text-black-50" for="message">Type your message.</label>
             <input class="form-control" id="message" rows="2" placeholder="Keep it simple."></input>
             <h6 class="float-right my-1" id="count-message"></h6>
           </div>
           <div class="row">
-            <button disabled class="btn btn-primary ml-3" id="send">Send</button>
+            <div class="col-12">
+              <button disabled class="btn btn-primary" id="send">Send</button>
+            </div>
           </div>
         </form>
         <br>
