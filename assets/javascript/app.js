@@ -149,8 +149,8 @@ $(document).ready(() => {
         .substr(2, 8);
       $("#messages").append(`
       <div class="${uid} wrapper flex-column d-flex mb-3">
-        <small class="time">${timestamp}</small>  
-        <!-- <img src="${avatar}" class="avatar text-right"> -->
+      <!-- <img src="${avatar}" class="avatar rounded text-right mx-1"> -->
+        <small class="time">${timestamp}</small>
         <small class="user-name mb-1">${username}</small>
         <div class="badge sent-msg ${genRandomString}">${message.linkify()}</div>
       </div>`)
@@ -221,4 +221,15 @@ $(document).ready(() => {
         .replace(videoUrlPattern, video)
     };
   }
+
+  $(document).on("click", ".sticky", event => {
+    event.preventDefault()
+    if ($(".footer").hasClass("sticky-footer")) {
+      $(".footer").removeClass("sticky-footer")
+      $(".sticky").text("Show Input")
+    } else {
+      $(".footer").addClass("sticky-footer")
+      $(".sticky").text("Hide Input")
+    }
+  })
 });

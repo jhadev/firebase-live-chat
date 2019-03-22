@@ -87,22 +87,28 @@ a {
   button {
     cursor: pointer;
   }
+
   .time {
     font-style: italic;
     font-size: 12px;
   }
+
   .user-name {
     font-size: 14px;
   }
+
   .msg-link {
     font-size: 0.8rem;
   }
+
   .alert {
     font-size: 12px;
     cursor: pointer;
   }
+
   .github,
-  .log-in {
+  .log-in,
+  .sticky {
     font-size: 14px;
     margin-bottom: 8px;
   }
