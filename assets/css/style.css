@@ -28,6 +28,7 @@ img {
 
 .msg-link {
   text-decoration: underline;
+  margin-bottom: 2px;
 }
 
 .log-in:hover,
