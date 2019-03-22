@@ -110,6 +110,10 @@ a {
     cursor: pointer;
   }
 
+  .sticky-footer {
+    position: fixed !important;
+  }
+
   .github,
   .log-in,
   .sticky {
