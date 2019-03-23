@@ -3,6 +3,7 @@
   margin: 2% auto;
 }
 
+
 .sent-msg {
   font-size: 16px;
   word-break: normal;
@@ -69,6 +70,7 @@ a:hover,
   /* box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15) !important; */
   background: white;
   position: sticky !important;
+  position: -webkit-sticky;
   bottom: 0px;
   z-index: 0;
 }
@@ -99,6 +101,11 @@ audio {
 }
 
 @media screen and (max-width: 999px) {
+
+  /* body {
+    margin-bottom: 153px;
+  } */
+
   button {
     cursor: pointer;
   }
@@ -122,8 +129,10 @@ audio {
   }
 
   .sticky-footer {
-    position: fixed !important;
-    width: 100%;
+    position: sticky !important;
+    position: -webkit-sticky;
+    /* width: 100%; */
+    /* height: 148px; */
   }
 
   .github,
