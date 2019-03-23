@@ -259,9 +259,9 @@ $(document).ready(function () {
       let urlPattern = /(?!.*(?:\.jpe?g|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
-      let imgUrlPattern = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/gim
-      let videoUrlPattern = /(https?:\/\/.*\.(?:mp4))/gim
-      let audioUrlPattern = /(https?:\/\/.*\.(?:mp3))/gim
+      let imgUrlPattern = /(?=.*(?:\.jpe?g|\.gif|\.png)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+      let videoUrlPattern = /(?=.*(?:\.mp4|\.ogg)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim
+      let audioUrlPattern = /(?=.*(?:\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim
 
       return this
         .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
