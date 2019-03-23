@@ -137,7 +137,7 @@ $(document).ready(function () {
   let textMax = 140;
   $('#count-message').html(`${textMax} chars remaining`);
 
-  $('#message').keyup(function () {
+  $('#message').on("keyup input", function () {
     let textLength = $('#message').val().length;
     let textRemaining = textMax - textLength;
 
@@ -159,20 +159,25 @@ $(document).ready(function () {
     toggleSignIn();
   });
 
-  $(document).on("click", ".sticky", event => {
+  $(document).on("click", ".input", event => {
     event.preventDefault()
     if ($(".footer").hasClass("sticky-footer")) {
       $(".footer").removeClass("sticky-footer")
-      $(".sticky").text("Show Input")
+      $(".input").text("Show Input")
     } else {
       $(".footer").addClass("sticky-footer")
-      $(".sticky").text("Hide Input")
+      $(".input").text("Hide Input")
     }
   })
 
+  $(document).on("click", ".theme", event => {
+    event.preventDefault();
+    checkTheme();
+  });
+
   //input message functions
   const handleErrors = () => {
-    $("#message").val("");
+    // $("#message").val("");
     const alertDiv = $("<div>");
     alertDiv
       .addClass("mt-4 alert alert-danger")
@@ -205,7 +210,7 @@ $(document).ready(function () {
     } else {
       if (message.length > 140) {
         handleErrors();
-        $(".alert").text(`You typed ${message.length} characters. The maximum is 140`);
+        $(".alert").text(`You typed ${message.length} characters. The maximum is 140.`);
         $('#count-message').html(`${textMax} chars remaining`);
       }
       if (message === "") {
@@ -215,6 +220,38 @@ $(document).ready(function () {
       }
     };
   }
+
+  const checkTheme = () => {
+    if ($("body").hasClass("bg-light")) {
+      $("body, .footer").removeClass("bg-light");
+      $(".navbar, .wrapper, .label, #count-message").removeClass("text-dark");
+      $(".navbar").removeClass(`bg-light navbar-light`);
+      $(".theme, .github").removeClass("badge-dark text-light");
+
+      //
+      $("body, .footer").addClass("bg-dark");
+      $(".navbar, .wrapper, .label, #count-message").addClass("text-light");
+      $(".navbar").addClass(`navbar-dark bg-dark`);
+      $(".theme").text("Light");
+      $(".theme, .github").addClass("badge-light text-dark");
+
+      //
+    } else if ($("body").hasClass("bg-dark")) {
+      $("body, .footer").removeClass("bg-dark");
+      $(".navbar, .wrapper, .label, #count-message").removeClass("text-light");
+      $(".navbar").removeClass(`bg-dark navbar-dark`);
+      $(".theme, .github").removeClass("badge-light text-dark");
+
+      //
+      $("body, .footer").addClass("bg-light");
+      $(".navbar, .wrapper, .label, #count-message").addClass("text-dark");
+      $(".navbar").addClass(`bg-light navbar-light`);
+      $(".github").addClass("badge-dark text-light");
+      $(".theme")
+        .text("Dark")
+        .addClass("badge-dark");
+    }
+  };
 
   //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {

@@ -1,6 +1,6 @@
 # Firebase Live Chat
 
-### A real time chat application made with HTML, CSS, JavaScript, jQuery, and Google Firebase with Google OAuth.
+### A real time chat application made with HTML, CSS, JavaScript, jQuery, Moment.js, and Google Firebase with Google OAuth.
 
 Updated to allow links, images, audio, and video through urls. Supports inline png, gif, jpg, jpeg images, mp4 video, and mp3 sounds.
 
