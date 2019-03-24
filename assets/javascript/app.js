@@ -38,7 +38,11 @@ $(document).ready(function () {
         }
       }
     }
-  }, (error, result) => {});
+  }, (error, result) => {
+    if (!error && result && result.event === "success") {
+      $("#message").val(result.info.url);
+    }
+  });
   // firebase config
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -123,7 +127,7 @@ $(document).ready(function () {
         $("#user").text(`Welcome,`);
         $(".welcome-msg").empty()
         $(".email").text(email);
-        $("#send").prop("disabled", false);
+        $("#send, #upload").prop("disabled", false);
         checkForMessages()
         // [END_EXCLUDE]
       } else {
@@ -136,7 +140,7 @@ $(document).ready(function () {
         $("#user").html(`Goodbye`);
         $(".welcome-msg").text("Sign in with your Google account.")
         $(".start, #user, #messages, .email").empty();
-        $("#send").prop("disabled", true);
+        $("#send, #upload").prop("disabled", true);
       }
     });
   };
@@ -167,7 +171,7 @@ $(document).ready(function () {
         $(uidClass).addClass("align-items-end")
         $(badgeClass).addClass("badge-primary")
       } else {
-        alert.play()
+        // alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
       }
