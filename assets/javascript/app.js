@@ -237,10 +237,10 @@ $(document).ready(function () {
     // $("#message").val("");
     const alertDiv = $("<div>");
     alertDiv
-      .addClass("mt-4 alert alert-danger")
+      .addClass("alert alert-danger")
       .attr("role", "alert")
       .attr("data-dismiss", "alert")
-    $(".form-group").append(alertDiv);
+    $(".input-group").after(alertDiv);
   };
 
   const packageMessage = (textMax, handleErrors) => {

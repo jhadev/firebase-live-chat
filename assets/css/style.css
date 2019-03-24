@@ -83,7 +83,14 @@ a::selection {
   width: 20px;
 }
 
+/* overriding bootstrap is bad mmmkay. */
+.input-group-text {
+  padding: 0 !important;
+}
 
+.form-control {
+  width: 100%;
+}
 
 .msg-link {
   text-decoration: underline;

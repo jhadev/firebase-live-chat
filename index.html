@@ -87,33 +87,36 @@
       </div>
       <div class="row footer justify-content-center mt-4">
         <div class="col-md-12 col-12">
-          <form>
-            <div class="form-group">
+          <div class="input-group py-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                <button id="upload" class="cloudinary btn btn-sm">
+                  <i class="fas fa-camera"></i></button
+              ></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="message"
+              placeholder="Type your message or upload an image."
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <h6 class="float-right my-1" id="count-message"></h6>
+          <div class="row">
+            <div class="col-12">
               <button
-                id="upload"
-                class="cloudinary btn-outline-dark btn btn-sm"
+                disabled
+                type="submit"
+                class="btn btn-primary mr-3"
+                id="send"
               >
-                <i class="fas fa-camera"></i>
+                Send
               </button>
-              <label class="text-dark label ml-1" for="message"
-                >Type your message or upload an image.</label
-              >
-              <input
-                class="form-control mt-1"
-                id="message"
-                rows="2"
-                placeholder="Keep it simple."
-              />
-              <h6 class="float-right my-1" id="count-message"></h6>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <button disabled class="btn btn-primary mr-2" id="send">
-                  Send
-                </button>
-              </div>
-            </div>
-          </form>
+          </div>
+
           <br />
         </div>
       </div>
