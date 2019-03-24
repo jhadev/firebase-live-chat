@@ -132,6 +132,10 @@ audio {
     cursor: pointer;
   }
 
+  .email {
+    margin-bottom: 6px;
+  }
+
   .time {
     font-style: italic;
     font-size: 12px;
