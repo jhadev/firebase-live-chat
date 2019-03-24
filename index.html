@@ -87,37 +87,39 @@
       </div>
       <div class="row footer justify-content-center mt-4">
         <div class="col-md-12 col-12">
-          <div class="input-group py-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">
-                <button id="upload" class="cloudinary btn btn-sm">
-                  <i class="fas fa-camera"></i></button
-              ></span>
+          <form>
+            <div class="form-group">
+              <div class="input-group py-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">
+                    <div id="upload" class="cloudinary btn btn-sm">
+                      <i class="fas fa-camera"></i></div
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="message"
+                  placeholder="Type your message or upload an image."
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+              </div>
+              <h6 class="float-right" id="count-message"></h6>
+              <div class="row">
+                <div class="col-12">
+                  <button
+                    disabled
+                    type="submit"
+                    class="btn btn-primary mr-3"
+                    id="send"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
             </div>
-            <input
-              type="text"
-              class="form-control"
-              id="message"
-              placeholder="Type your message or upload an image."
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-            />
-          </div>
-          <h6 class="float-right my-1" id="count-message"></h6>
-          <div class="row">
-            <div class="col-12">
-              <button
-                disabled
-                type="submit"
-                class="btn btn-primary mr-3"
-                id="send"
-              >
-                Send
-              </button>
-            </div>
-          </div>
-
-          <br />
+          </form>
         </div>
       </div>
     </div>
