@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+  const alert = new Audio("assets/sounds/alert.mp3")
+  const sent = new Audio("assets/sounds/sent.mp3")
   // firebase config
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -74,6 +75,7 @@ $(document).ready(function () {
         const uid = user.uid;
         const providerData = user.providerData;
         // [START_EXCLUDE]
+        localStorage.setItem("name", displayName)
         localStorage.setItem("email", email)
         localStorage.setItem("uid", uid)
         localStorage.setItem("avatar", photoURL)
@@ -103,6 +105,7 @@ $(document).ready(function () {
   const checkForMessages = () => {
     firebase.database().ref("chat").on("child_added", childSnapshot => {
       let username = childSnapshot.val().user
+      let name = childSnapshot.val().name
       let message = childSnapshot.val().message
       let uid = childSnapshot.val().uid
       let timestamp = childSnapshot.val().timestamp
@@ -124,6 +127,7 @@ $(document).ready(function () {
         $(uidClass).addClass("align-items-end")
         $(badgeClass).addClass("badge-primary")
       } else {
+        alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
       }
@@ -191,10 +195,12 @@ $(document).ready(function () {
     let username = localStorage.getItem("email");
     let uid = localStorage.getItem("uid");
     let avatar = localStorage.getItem("avatar");
+    let name = localStorage.getItem("name")
     let message = $("#message").val().trim();
     let timestamp = moment().format('lll');
     let messageObj = {
       user: username,
+      name: name,
       uid: uid,
       timestamp: timestamp,
       message: message,
@@ -208,6 +214,7 @@ $(document).ready(function () {
       $('html, body').animate({
         scrollTop: $(document).height()
       }, 'fast');
+      sent.play()
     } else {
       if (message.length > 140) {
         handleErrors();

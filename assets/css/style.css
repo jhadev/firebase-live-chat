@@ -123,10 +123,6 @@ audio {
 
 @media screen and (max-width: 999px) {
 
-  /* body {
-    margin-bottom: 153px;
-  } */
-
   button,
   .email {
     cursor: pointer;
@@ -141,7 +137,9 @@ audio {
     font-size: 12px;
   }
 
-  .user-name {
+  .user-name,
+  .label,
+  #count-message {
     font-size: 14px;
   }
 
