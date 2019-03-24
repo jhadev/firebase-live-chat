@@ -83,9 +83,6 @@ $(document).ready(function () {
         $("#user").text(`Welcome,`);
         $(".email").text(email);
         $("#send").prop("disabled", false);
-        // $(".start").append(
-        //   `<img src="https://user-images.githubusercontent.com/42519030/54242956-f424a380-44fc-11e9-89e3-76ece045f9ca.jpg"></img>`
-        // );
         checkForMessages()
         // [END_EXCLUDE]
       } else {
@@ -173,6 +170,10 @@ $(document).ready(function () {
   $(document).on("click", ".theme", event => {
     event.preventDefault();
     checkTheme();
+  });
+
+  $(document).on("click", ".show-user", event => {
+    $(".modal").modal()
   });
 
   //input message functions

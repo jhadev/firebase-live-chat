@@ -49,7 +49,7 @@ a::selection {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  color: rgb(253, 194, 30);
+  color: #fa9440;
 }
 
 .log-in:hover,
@@ -96,8 +96,32 @@ audio {
   padding: 10px;
 }
 
+.user-details-container {
+  width: 100%;
+}
+
+#account-details {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .fire-icon {
   color: #fa7203
+}
+
+.badge-orange {
+  background-color: #fa7203;
+  color: #fff
 }
 
 @media screen and (max-width: 999px) {
@@ -137,7 +161,8 @@ audio {
 
   .github,
   .log-in,
-  .input {
+  .input,
+  .show-user {
     font-size: 14px;
     margin-bottom: 8px;
   }
