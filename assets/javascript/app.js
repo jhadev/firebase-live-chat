@@ -83,6 +83,7 @@ $(document).ready(function () {
         $(".log-in").text("Sign Out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
         $("#user").text(`Welcome,`);
+        $(".welcome-msg").empty()
         $(".email").text(email);
         $("#send").prop("disabled", false);
         checkForMessages()
@@ -95,7 +96,8 @@ $(document).ready(function () {
         $("#account-details").text("null");
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
-        $(".start, .welcome, #messages, .email").empty();
+        $(".welcome-msg").text("Sign in with your Google account.")
+        $(".start, #user, #messages, .email").empty();
         $("#send").prop("disabled", true);
       }
     });

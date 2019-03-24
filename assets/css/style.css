@@ -3,7 +3,6 @@
   margin: 2% auto;
 }
 
-
 .sent-msg {
   font-size: 16px;
   word-break: normal;
@@ -30,7 +29,8 @@ a::selection {
   width: 20px;
 }
 
-.navbar-brand {
+.navbar-brand,
+.welcome {
   font-weight: bold;
 }
 
@@ -121,6 +121,13 @@ audio {
   color: #fff
 }
 
+.github,
+.log-in,
+.input,
+.show-user {
+  font-size: 14px;
+}
+
 @media screen and (max-width: 999px) {
 
   button,
@@ -144,7 +151,7 @@ audio {
   }
 
   .msg-link {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .alert {
