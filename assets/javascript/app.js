@@ -1,7 +1,10 @@
 $(document).ready(function () {
+
+  // declare notification sounds
   const alert = new Audio("assets/sounds/alert.mp3")
   const sent = new Audio("assets/sounds/sent.mp3")
 
+  // cloudinary config
   const widget = cloudinary.createUploadWidget({
     cloudName: "dvyx7biyp",
     uploadPreset: "kkgec3pb",
@@ -16,21 +19,21 @@ $(document).ready(function () {
         window: "#F5F5F5",
         sourceBg: "#FFFFFF",
         windowBorder: "#90a0b3",
-        tabIcon: "#0094c7",
+        tabIcon: "#007BFF",
         inactiveTabIcon: "#69778A",
-        menuIcons: "#0094C7",
-        link: "#53ad9d",
+        menuIcons: "#007BFF",
+        link: "#FA7203",
         action: "#8F5DA5",
-        inProgress: "#0194c7",
-        complete: "#53ad9d",
+        inProgress: "#007BFF",
+        complete: "#FA7203",
         error: "#c43737",
         textDark: "#000000",
         textLight: "#FFFFFF"
       },
       fonts: {
         default: null,
-        "'Poppins', sans-serif": {
-          url: "https://fonts.googleapis.com/css?family=Poppins",
+        "'IBM Plex Sans', sans-serif": {
+          url: "https://fonts.googleapis.com/css?family=IBM+Plex+Sans",
           active: true
         }
       }
