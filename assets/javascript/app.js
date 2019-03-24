@@ -172,7 +172,7 @@ $(document).ready(function () {
     checkTheme();
   });
 
-  $(document).on("click", ".show-user", event => {
+  $(document).on("click", ".email", event => {
     $(".modal").modal()
   });
 

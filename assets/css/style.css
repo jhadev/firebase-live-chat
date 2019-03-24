@@ -127,7 +127,8 @@ audio {
     margin-bottom: 153px;
   } */
 
-  button {
+  button,
+  .email {
     cursor: pointer;
   }
 
