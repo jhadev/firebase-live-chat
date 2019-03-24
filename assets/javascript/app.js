@@ -8,10 +8,7 @@ $(document).ready(function () {
     sources: [
       "local",
       "url",
-      "camera",
-      "facebook",
-      "dropbox",
-      "instagram"
+      "camera"
     ],
     defaultSource: "local",
     styles: {
