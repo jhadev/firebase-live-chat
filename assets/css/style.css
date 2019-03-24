@@ -146,7 +146,8 @@ a::selection {
 @media screen and (max-width: 999px) {
 
   button,
-  .nav-user {
+  .nav-user,
+  #upload {
     cursor: pointer;
   }
 
