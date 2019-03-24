@@ -1,6 +1,6 @@
 # Firebase Live Chat
 
-### A real time chat application made with HTML, CSS, JavaScript, jQuery, Moment.js, Cloudinary, and Google Firebase with Google OAuth.
+### A real time chat application made with HTML, CSS, Bootstrap, JavaScript, jQuery, Moment.js, Cloudinary, and Google Firebase with Google OAuth.
 
 Updated to allow links, images, audio, and video through urls. Supports inline png, gif, jpg, jpeg images, mp4 video, and mp3 sounds. Now supports image uploading through Cloudinary. Upload your local images and the link will be automatically pasted into the text box, ready to share.
 

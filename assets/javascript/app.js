@@ -40,7 +40,7 @@ $(document).ready(function () {
     }
   }, (error, result) => {
     if (!error && result && result.event === "success") {
-      $("#message").val(result.info.url);
+      $("#message").val(result.info.secure_url);
     }
   });
   // firebase config
