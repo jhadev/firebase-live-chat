@@ -1,6 +1,48 @@
 $(document).ready(function () {
   const alert = new Audio("assets/sounds/alert.mp3")
   const sent = new Audio("assets/sounds/sent.mp3")
+
+  const widget = cloudinary.createUploadWidget({
+    cloudName: "dvyx7biyp",
+    uploadPreset: "kkgec3pb",
+    sources: [
+      "local",
+      "url",
+      "camera",
+      "facebook",
+      "dropbox",
+      "instagram"
+    ],
+    defaultSource: "local",
+    styles: {
+      palette: {
+        window: "#F5F5F5",
+        sourceBg: "#FFFFFF",
+        windowBorder: "#90a0b3",
+        tabIcon: "#0094c7",
+        inactiveTabIcon: "#69778A",
+        menuIcons: "#0094C7",
+        link: "#53ad9d",
+        action: "#8F5DA5",
+        inProgress: "#0194c7",
+        complete: "#53ad9d",
+        error: "#c43737",
+        textDark: "#000000",
+        textLight: "#FFFFFF"
+      },
+      fonts: {
+        default: null,
+        "'Poppins', sans-serif": {
+          url: "https://fonts.googleapis.com/css?family=Poppins",
+          active: true
+        }
+      }
+    }
+  }, (error, result) => {
+    if (!error && result && result.event === "success") {
+      $("#message").val(result.info.url);
+    }
+  });
   // firebase config
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -85,7 +127,7 @@ $(document).ready(function () {
         $("#user").text(`Welcome,`);
         $(".welcome-msg").empty()
         $(".email").text(email);
-        $("#send").prop("disabled", false);
+        $("#send, #upload").prop("disabled", false);
         checkForMessages()
         // [END_EXCLUDE]
       } else {
@@ -98,7 +140,7 @@ $(document).ready(function () {
         $("#user").html(`Goodbye`);
         $(".welcome-msg").text("Sign in with your Google account.")
         $(".start, #user, #messages, .email").empty();
-        $("#send").prop("disabled", true);
+        $("#send, #upload").prop("disabled", true);
       }
     });
   };
@@ -129,7 +171,7 @@ $(document).ready(function () {
         $(uidClass).addClass("align-items-end")
         $(badgeClass).addClass("badge-primary")
       } else {
-        alert.play()
+        // alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
       }
@@ -183,6 +225,11 @@ $(document).ready(function () {
 
   $(document).on("click", ".email", event => {
     $(".modal").modal()
+  });
+
+  $(document).on("click", "#upload", event => {
+    event.preventDefault()
+    widget.open()
   });
 
   //input message functions
