@@ -160,6 +160,9 @@ $(document).ready(function () {
   $(document).on("click", ".log-in", event => {
     event.preventDefault()
     toggleSignIn();
+    alert.play().then(() => {
+      alert.pause()
+    })
   });
 
   $(document).on("click", ".input", event => {
