@@ -1,3 +1,57 @@
+#account-details {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  /* -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto; */
+}
+
+/* nav and welcome */
+.navbar-brand,
+.welcome {
+  font-weight: bold;
+}
+
+.welcome {
+  background: #fa7203;
+  margin: auto;
+  padding: 10px;
+}
+
+.user-details-container {
+  width: 100%;
+}
+
+.github,
+.log-in,
+.input,
+.show-user,
+.nav-user {
+  font-size: 14px;
+}
+
+.log-in:hover,
+a:hover,
+.input:hover {
+  color: rgb(189, 189, 189);
+}
+
+/* all for message styling */
+
+audio {
+  width: 300px;
+  margin: 2% auto;
+}
+
+video {
+  width: 100%;
+  margin: 2% auto;
+}
+
 .msg-img {
   width: 100%;
   margin: 2% auto;
@@ -29,10 +83,7 @@ a::selection {
   width: 20px;
 }
 
-.navbar-brand,
-.welcome {
-  font-weight: bold;
-}
+
 
 .msg-link {
   text-decoration: underline;
@@ -52,18 +103,23 @@ a::selection {
   color: #fa9440;
 }
 
-.log-in:hover,
-a:hover,
-.input:hover {
-  color: rgb(189, 189, 189);
-}
-
 .time {
   font-style: italic;
 }
 
 .user-name {
   font-weight: bold;
+}
+
+/* bottom of page + misc */
+
+.fire-icon {
+  color: #fa7203
+}
+
+.badge-orange {
+  background-color: #fa7203;
+  color: #fff
 }
 
 .sticky-footer {
@@ -75,67 +131,19 @@ a:hover,
   z-index: 0;
 }
 
-video {
-  width: 100%;
-  margin: 2% auto;
-}
-
-audio {
-  width: 300px;
-  margin: 2% auto;
-}
-
 .icon-large {
   font-size: 24px;
   margin-right: 5px;
 }
 
-.welcome {
-  background: #fa7203;
-  margin: auto;
-  padding: 10px;
-}
-
-.user-details-container {
-  width: 100%;
-}
-
-#account-details {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
-  /* -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto; */
-}
-
-.fire-icon {
-  color: #fa7203
-}
-
-.badge-orange {
-  background-color: #fa7203;
-  color: #fff
-}
-
-.github,
-.log-in,
-.input,
-.show-user {
-  font-size: 14px;
-}
-
 @media screen and (max-width: 999px) {
 
   button,
-  .email {
+  .nav-user {
     cursor: pointer;
   }
 
-  .email {
+  .nav-user {
     margin-bottom: 6px;
   }
 
@@ -162,8 +170,6 @@ audio {
   .sticky-footer {
     position: sticky !important;
     position: -webkit-sticky;
-    /* width: 100%; */
-    /* height: 148px; */
   }
 
   .github,

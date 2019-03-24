@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mr-1">
-          <button class="email btn badge badge-light"></button>
+          <button class="email nav-user btn badge badge-light"></button>
         </li>
         <li class="nav-item mx-1">
           <button class="badge badge-primary btn log-in">Sign In With Google</button>
@@ -84,23 +84,27 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Your OAuth Details</h5>
+          <h5 class="modal-title" id="modalTitle">Your OAuth Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="user-details-container">
-            Firebase sign-in status: <span id="sign-in-status">Unknown</span>
-            <div>Firebase auth <code>currentUser</code> object value:</div>
-            <pre><code id="account-details"></code></pre>
-            <div>Google OAuth Access Token:</div>
-            <pre><code id="oauthtoken"></code></pre>
+          <div class="row">
+            <div class="col-12">
+              <div class="user-details-container">
+                Firebase sign-in status: <span id="sign-in-status">Unknown</span>
+                <div>Firebase auth <code>currentUser</code> object value:</div>
+                <pre><code id="account-details"></code></pre>
+                <div>Google OAuth Access Token:</div>
+                <pre><code id="oauthtoken"></code></pre>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
