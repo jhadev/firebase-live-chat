@@ -187,10 +187,10 @@ $(document).ready(function () {
   };
 
   // char counter
-  let textMax = 140;
+  let textMax = 300;
   $('#count-message').html(`${textMax} chars remaining`);
 
-  $('#message').on("keyup input", function () {
+  $('#message').on("keyup", function () {
     let textLength = $('#message').val().length;
     let textRemaining = textMax - textLength;
 
@@ -271,7 +271,7 @@ $(document).ready(function () {
       message: message,
       avatar: avatar
     };
-    if (message !== "" && message.length <= 140) {
+    if (message !== "" && message.length <= textMax) {
       firebase.database().ref("chat").push(messageObj);
       $("#message").val("");
       $(".alert").alert("close");
@@ -281,9 +281,9 @@ $(document).ready(function () {
       }, 'fast');
       sent.play()
     } else {
-      if (message.length > 140) {
+      if (message.length > textMax) {
         handleErrors();
-        $(".alert").text(`You typed ${message.length} characters. The maximum is 140. If we wanted to read a novel, we'd get a book.`);
+        $(".alert").text(`You typed ${message.length} characters. The maximum is ${textMax} characters. If we wanted to read a novel, we'd get a book.`);
         $('#count-message').html(`${textMax} chars remaining.`);
       }
       if (message === "") {
@@ -329,7 +329,7 @@ $(document).ready(function () {
   //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {
     String.prototype.linkify = function () {
-      let urlPattern = /(?!.*(?:\.jpe?g|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+      let urlPattern = /(?!:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))(?!.*(?:\.jpe?g|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
       let imgUrlPattern = /(?=.*(?:\.jpe?g|\.gif|\.png)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
