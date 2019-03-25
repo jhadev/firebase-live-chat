@@ -178,7 +178,7 @@ $(document).ready(function () {
         $(badgeClass).addClass("badge-primary")
         $(".user-name").attr("data-placement", "left");
       } else {
-        alert.play()
+        // alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
         $(".user-name").attr("data-placement", "right");
@@ -210,9 +210,6 @@ $(document).ready(function () {
   $(document).on("click", ".log-in", event => {
     event.preventDefault()
     toggleSignIn();
-    alert.play().then(() => {
-      alert.pause()
-    })
   });
 
   $(document).on("click", ".input", event => {
