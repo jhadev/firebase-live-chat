@@ -190,7 +190,7 @@ $(document).ready(function () {
   let textMax = 300;
   $('#count-message').html(`${textMax} chars remaining`);
 
-  $('#message').on("keyup", function () {
+  $('#message').on("keyup input", function () {
     let textLength = $('#message').val().length;
     let textRemaining = textMax - textLength;
 

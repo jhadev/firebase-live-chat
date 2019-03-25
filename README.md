@@ -4,6 +4,8 @@
 
 Updated to allow links, images, audio, and video through urls. Supports inline png, gif, jpg, jpeg images, mp4 video, and mp3 sounds. Now supports image uploading through Cloudinary. Upload your local images and the link will be automatically pasted into the text box, ready to share.
 
+Can also handle iframes in the input field. Embedded youtube videos will display normally.
+
 [Chat Here](https://jhadev.github.io/firebase-live-chat/)
 
 ![live-chat-demo](https://user-images.githubusercontent.com/42519030/54869570-f4c8ff80-4d70-11e9-8d2f-937c2c38b565.jpg)

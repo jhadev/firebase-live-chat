@@ -145,6 +145,10 @@ a::selection {
 
 @media screen and (max-width: 999px) {
 
+  iframe {
+    width: 100%;
+  }
+
   button,
   .nav-user,
   #upload,
