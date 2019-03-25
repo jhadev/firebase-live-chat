@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   // declare notification sounds
   const alert = new Audio("assets/sounds/alert.mp3")
   const sent = new Audio("assets/sounds/sent.mp3")
@@ -160,9 +164,11 @@ $(document).ready(function () {
         .substr(2, 8);
       $("#messages").append(`
       <div class="${uid} wrapper flex-column d-flex mb-3">
-      <!-- <img src="${avatar}" class="avatar rounded text-right mx-1"> -->
         <small class="time">${timestamp}</small>
-        <small class="user-name mb-1">${username}</small>
+        <small class="user-name mb-1" data-toggle="tooltip" data-placement="top" title="${username}">
+          <img src="${avatar}" class="avatar rounded text-right mx-1">
+            ${name}
+        </small>
         <div class="badge sent-msg ${genRandomString}">${message.linkify()}</div>
       </div>`)
       let uidClass = `.${uid}`
@@ -170,10 +176,12 @@ $(document).ready(function () {
       if (uid === localUid) {
         $(uidClass).addClass("align-items-end")
         $(badgeClass).addClass("badge-primary")
+        $(".user-name").attr("data-placement", "left");
       } else {
         // alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
+        $(".user-name").attr("data-placement", "right");
       }
     });
   };
@@ -230,6 +238,11 @@ $(document).ready(function () {
   $(document).on("click", "#upload", event => {
     event.preventDefault()
     widget.open()
+  });
+
+  $(document).on("click", ".user-name", event => {
+    event.preventDefault()
+    $(".user-name").tooltip()
   });
 
   //input message functions
