@@ -1,52 +1,50 @@
-$(document).ready(function () {
-
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+$(document).ready(function() {
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 
   // declare notification sounds
-  const alert = new Audio("assets/sounds/alert.mp3")
-  const sent = new Audio("assets/sounds/sent.mp3")
+  const alert = new Audio("assets/sounds/alert.mp3");
+  const sent = new Audio("assets/sounds/sent.mp3");
 
   // cloudinary config
-  const widget = cloudinary.createUploadWidget({
-    cloudName: "dvyx7biyp",
-    uploadPreset: "kkgec3pb",
-    sources: [
-      "local",
-      "url",
-      "camera"
-    ],
-    defaultSource: "local",
-    styles: {
-      palette: {
-        window: "#F5F5F5",
-        sourceBg: "#FFFFFF",
-        windowBorder: "#90a0b3",
-        tabIcon: "#007BFF",
-        inactiveTabIcon: "#69778A",
-        menuIcons: "#007BFF",
-        link: "#FA7203",
-        action: "#8F5DA5",
-        inProgress: "#007BFF",
-        complete: "#FA7203",
-        error: "#c43737",
-        textDark: "#000000",
-        textLight: "#FFFFFF"
-      },
-      fonts: {
-        default: null,
-        "'IBM Plex Sans', sans-serif": {
-          url: "https://fonts.googleapis.com/css?family=IBM+Plex+Sans",
-          active: true
+  const widget = cloudinary.createUploadWidget(
+    {
+      cloudName: "dvyx7biyp",
+      uploadPreset: "kkgec3pb",
+      sources: ["local", "url", "camera"],
+      defaultSource: "local",
+      styles: {
+        palette: {
+          window: "#F5F5F5",
+          sourceBg: "#FFFFFF",
+          windowBorder: "#90a0b3",
+          tabIcon: "#007BFF",
+          inactiveTabIcon: "#69778A",
+          menuIcons: "#007BFF",
+          link: "#FA7203",
+          action: "#8F5DA5",
+          inProgress: "#007BFF",
+          complete: "#FA7203",
+          error: "#c43737",
+          textDark: "#000000",
+          textLight: "#FFFFFF"
+        },
+        fonts: {
+          default: null,
+          "'IBM Plex Sans', sans-serif": {
+            url: "https://fonts.googleapis.com/css?family=IBM+Plex+Sans",
+            active: true
+          }
         }
       }
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        $("#message").val(result.info.secure_url);
+      }
     }
-  }, (error, result) => {
-    if (!error && result && result.event === "success") {
-      $("#message").val(result.info.secure_url);
-    }
-  });
+  );
   // firebase config
   const config = {
     apiKey: "AIzaSyCOfAAL_Al46MrmoItev-O5gMjj1uhbzNs",
@@ -69,7 +67,7 @@ $(document).ready(function () {
       firebase.auth().signInWithRedirect(provider);
     } else {
       firebase.auth().signOut();
-      localStorage.clear()
+      localStorage.clear();
     }
   };
 
@@ -79,7 +77,7 @@ $(document).ready(function () {
     firebase
       .auth()
       .getRedirectResult()
-      .then((result) => {
+      .then(result => {
         if (result.credential) {
           // This gives you a Google Access Token. You can use it to access the Google API.
           const token = result.credential.accessToken;
@@ -92,7 +90,7 @@ $(document).ready(function () {
         // The signed-in user info.
         const user = result.user;
       })
-      .catch((error) => {
+      .catch(error => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -110,7 +108,7 @@ $(document).ready(function () {
         }
         // [END_EXCLUDE]
       });
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         const displayName = user.displayName;
@@ -121,18 +119,18 @@ $(document).ready(function () {
         const uid = user.uid;
         const providerData = user.providerData;
         // [START_EXCLUDE]
-        localStorage.setItem("name", displayName)
-        localStorage.setItem("email", email)
-        localStorage.setItem("uid", uid)
-        localStorage.setItem("avatar", photoURL)
+        localStorage.setItem("name", displayName);
+        localStorage.setItem("email", email);
+        localStorage.setItem("uid", uid);
+        localStorage.setItem("avatar", photoURL);
         $("#sign-in-status").text("Signed in");
         $(".log-in").text("Sign Out");
         $("#account-details").text(JSON.stringify(user, null, "  "));
         $("#user").text(`Welcome,`);
-        $(".welcome-msg").empty()
+        $(".welcome-msg").empty();
         $(".email").text(email);
         $("#send, #upload").prop("disabled", false);
-        checkForMessages()
+        checkForMessages();
         // [END_EXCLUDE]
       } else {
         // User is signed out.
@@ -142,27 +140,30 @@ $(document).ready(function () {
         $("#account-details").text("null");
         $("#oauthtoken").text("null");
         $("#user").html(`Goodbye`);
-        $(".welcome-msg").text("Sign in with your Google account.")
+        $(".welcome-msg").text("Sign in with your Google account.");
         $(".start, #user, #messages, .email").empty();
         $("#send, #upload").prop("disabled", true);
       }
     });
-  };
+  }
 
   // poll firebase when new message is added and write to page
   const checkForMessages = () => {
-    firebase.database().ref("chat").on("child_added", childSnapshot => {
-      let username = childSnapshot.val().user
-      let name = childSnapshot.val().name
-      let message = childSnapshot.val().message
-      let uid = childSnapshot.val().uid
-      let timestamp = childSnapshot.val().timestamp
-      let avatar = childSnapshot.val().avatar
-      let localUid = localStorage.getItem("uid")
-      const genRandomString = Math.random()
-        .toString(36)
-        .substr(2, 8);
-      $("#messages").append(`
+    firebase
+      .database()
+      .ref("chat")
+      .on("child_added", childSnapshot => {
+        let username = childSnapshot.val().user;
+        let name = childSnapshot.val().name;
+        let message = childSnapshot.val().message;
+        let uid = childSnapshot.val().uid;
+        let timestamp = childSnapshot.val().timestamp;
+        let avatar = childSnapshot.val().avatar;
+        let localUid = localStorage.getItem("uid");
+        const genRandomString = Math.random()
+          .toString(36)
+          .substr(2, 8);
+        $("#messages").append(`
       <div class="${uid} wrapper flex-column d-flex mb-3">
         <small class="time">${timestamp}</small>
         <small class="user-name mb-1" data-toggle="tooltip" data-placement="top" title="${username}">
@@ -170,31 +171,33 @@ $(document).ready(function () {
             ${name}
         </small>
         <div class="badge sent-msg ${genRandomString}">${message.linkify()}</div>
-      </div>`)
-      let uidClass = `.${uid}`
-      let badgeClass = `.${genRandomString}`
-      if (uid === localUid) {
-        $(uidClass).addClass("align-items-end")
-        $(badgeClass).addClass("badge-primary")
-        $(".user-name").attr("data-placement", "left");
-      } else {
-        // alert.play()
-        $(uidClass).addClass("align-items-start")
-        $(badgeClass).addClass("badge-secondary")
-        $(".user-name").attr("data-placement", "right");
-      }
-    });
+      </div>`);
+        let uidClass = `.${uid}`;
+        let badgeClass = `.${genRandomString}`;
+        if (uid === localUid) {
+          $(uidClass).addClass("align-items-end");
+          $(badgeClass).addClass("badge-primary");
+          $(".user-name").attr("data-placement", "left");
+        } else {
+          if ($(window).width() > 1280) {
+            alert.play();
+          }
+          $(uidClass).addClass("align-items-start");
+          $(badgeClass).addClass("badge-secondary");
+          $(".user-name").attr("data-placement", "right");
+        }
+      });
   };
 
   // char counter
   let textMax = 300;
-  $('#count-message').html(`${textMax} chars remaining`);
+  $("#count-message").html(`${textMax} chars remaining`);
 
-  $('#message').on("keyup input", function () {
-    let textLength = $('#message').val().length;
+  $("#message").on("keyup input", function() {
+    let textLength = $("#message").val().length;
     let textRemaining = textMax - textLength;
 
-    $('#count-message').html(`${textRemaining} chars remaining`);
+    $("#count-message").html(`${textRemaining} chars remaining`);
   });
 
   // click functions
@@ -203,25 +206,25 @@ $(document).ready(function () {
   });
 
   $(document).on("click", "#send", event => {
-    event.preventDefault()
+    event.preventDefault();
     packageMessage(textMax, handleErrors);
   });
 
   $(document).on("click", ".log-in", event => {
-    event.preventDefault()
+    event.preventDefault();
     toggleSignIn();
   });
 
   $(document).on("click", ".input", event => {
-    event.preventDefault()
+    event.preventDefault();
     if ($(".footer").hasClass("sticky-footer")) {
-      $(".footer").removeClass("sticky-footer")
-      $(".input").text("Show Input")
+      $(".footer").removeClass("sticky-footer");
+      $(".input").text("Show Input");
     } else {
-      $(".footer").addClass("sticky-footer")
-      $(".input").text("Hide Input")
+      $(".footer").addClass("sticky-footer");
+      $(".input").text("Hide Input");
     }
-  })
+  });
 
   $(document).on("click", ".theme", event => {
     event.preventDefault();
@@ -229,17 +232,17 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".email", event => {
-    $(".modal").modal()
+    $(".modal").modal();
   });
 
   $(document).on("click", "#upload", event => {
-    event.preventDefault()
-    widget.open()
+    event.preventDefault();
+    widget.open();
   });
 
   $(document).on("click", ".user-name", event => {
-    event.preventDefault()
-    $(".user-name").tooltip()
+    event.preventDefault();
+    $(".user-name").tooltip();
   });
 
   //input message functions
@@ -249,7 +252,7 @@ $(document).ready(function () {
     alertDiv
       .addClass("alert alert-danger")
       .attr("role", "alert")
-      .attr("data-dismiss", "alert")
+      .attr("data-dismiss", "alert");
     $(".input-group").after(alertDiv);
   };
 
@@ -257,9 +260,11 @@ $(document).ready(function () {
     let username = localStorage.getItem("email");
     let uid = localStorage.getItem("uid");
     let avatar = localStorage.getItem("avatar");
-    let name = localStorage.getItem("name")
-    let message = $("#message").val().trim();
-    let timestamp = moment().format('lll');
+    let name = localStorage.getItem("name");
+    let message = $("#message")
+      .val()
+      .trim();
+    let timestamp = moment().format("lll");
     let messageObj = {
       user: username,
       name: name,
@@ -269,27 +274,37 @@ $(document).ready(function () {
       avatar: avatar
     };
     if (message !== "" && message.length <= textMax) {
-      firebase.database().ref("chat").push(messageObj);
+      firebase
+        .database()
+        .ref("chat")
+        .push(messageObj);
       $("#message").val("");
       $(".alert").alert("close");
-      $('#count-message').html(`${textMax} chars remaining`);
-      $('html, body').animate({
-        scrollTop: $(document).height()
-      }, 'fast');
-      sent.play()
+      $("#count-message").html(`${textMax} chars remaining`);
+      $("html, body").animate(
+        {
+          scrollTop: $(document).height()
+        },
+        "fast"
+      );
+      sent.play();
     } else {
       if (message.length > textMax) {
         handleErrors();
-        $(".alert").text(`You typed ${message.length} characters. The maximum is ${textMax} characters. If we wanted to read a novel, we'd get a book.`);
-        $('#count-message').html(`${textMax} chars remaining.`);
+        $(".alert").text(
+          `You typed ${
+            message.length
+          } characters. The maximum is ${textMax} characters. If we wanted to read a novel, we'd get a book.`
+        );
+        $("#count-message").html(`${textMax} chars remaining.`);
       }
       if (message === "") {
         handleErrors();
         $(".alert").text(`The sound of silence cannot be heard here.`);
-        $('#count-message').html(`${textMax} chars remaining`);
+        $("#count-message").html(`${textMax} chars remaining`);
       }
-    };
-  }
+    }
+  };
 
   const checkTheme = () => {
     if ($("body").hasClass("bg-light")) {
@@ -325,30 +340,44 @@ $(document).ready(function () {
 
   //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {
-    String.prototype.linkify = function () {
+    String.prototype.linkify = function() {
       let urlPattern = /(?!.*(?:\.jpe?g|\/iframe>|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
       let imgUrlPattern = /(?=.*(?:\.jpe?g|\.gif|\.png)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
-      let videoUrlPattern = /(?=.*(?:\.mp4|\.ogg)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim
-      let audioUrlPattern = /(?=.*(?:\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim
+      let videoUrlPattern = /(?=.*(?:\.mp4|\.ogg)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+      let audioUrlPattern = /(?=.*(?:\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
 
-      return this
-        .replace(urlPattern, `<a class="msg-link" href="$&" target="_blank">$&</a>`)
-        .replace(pseudoUrlPattern, '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>')
+      return this.replace(
+        urlPattern,
+        `<a class="msg-link" href="$&" target="_blank">$&</a>`
+      )
+        .replace(
+          pseudoUrlPattern,
+          '$1<a class="msg-link" href="http://$2" target="_blank">$2</a>'
+        )
         .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>')
-        .replace(imgUrlPattern, `
+        .replace(
+          imgUrlPattern,
+          `
         <a class="msg-link" href="$&" target="_blank">
           <img class="msg-img img-fluid rounded img-thumbnail" src="$&">
-        </a>`)
-        .replace(videoUrlPattern, `
+        </a>`
+        )
+        .replace(
+          videoUrlPattern,
+          `
         <video class="msg-video img-thumbnail" controls>
           <source src="$&" type="video/mp4">
-        </video>`)
-        .replace(audioUrlPattern, `
+        </video>`
+        )
+        .replace(
+          audioUrlPattern,
+          `
         <audio controls>
           <source src="$&" type="audio/mpeg">
-        </audio>`)
+        </audio>`
+        );
     };
   }
 });
