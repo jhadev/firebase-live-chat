@@ -178,7 +178,7 @@ $(document).ready(function () {
         $(badgeClass).addClass("badge-primary")
         $(".user-name").attr("data-placement", "left");
       } else {
-        // alert.play()
+        alert.play()
         $(uidClass).addClass("align-items-start")
         $(badgeClass).addClass("badge-secondary")
         $(".user-name").attr("data-placement", "right");
@@ -283,12 +283,12 @@ $(document).ready(function () {
     } else {
       if (message.length > 140) {
         handleErrors();
-        $(".alert").text(`You typed ${message.length} characters. The maximum is 140.`);
-        $('#count-message').html(`${textMax} chars remaining`);
+        $(".alert").text(`You typed ${message.length} characters. The maximum is 140. If we wanted to read a novel, we'd get a book.`);
+        $('#count-message').html(`${textMax} chars remaining.`);
       }
       if (message === "") {
         handleErrors();
-        $(".alert").text(`Please enter a valid value.`);
+        $(".alert").text(`The sound of silence cannot be heard here.`);
         $('#count-message').html(`${textMax} chars remaining`);
       }
     };
