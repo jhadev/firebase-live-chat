@@ -147,7 +147,8 @@ a::selection {
 
   button,
   .nav-user,
-  #upload {
+  #upload,
+  .user-name {
     cursor: pointer;
   }
 
