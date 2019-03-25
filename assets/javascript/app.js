@@ -329,7 +329,7 @@ $(document).ready(function () {
   //detect links, images, video in message strings and render tags accordingly.
   if (!String.linkify) {
     String.prototype.linkify = function () {
-      let urlPattern = /(?!:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))(?!.*(?:\.jpe?g|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+      let urlPattern = /(?!.*(?:\.jpe?g|\/iframe>|\.gif|\.png|\.mp4|\.mp3)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
       let pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       let emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
       let imgUrlPattern = /(?=.*(?:\.jpe?g|\.gif|\.png)$)\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
