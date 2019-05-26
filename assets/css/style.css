@@ -52,9 +52,13 @@ video {
   margin: 2% auto;
 }
 
-.msg-img {
+iframe {
   width: 100%;
+}
+
+.msg-img {
   margin: 2% auto;
+
 }
 
 .sent-msg {
@@ -68,6 +72,7 @@ video {
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
+  max-width: 30%;
   /* text-align: left !important; */
   /* line-height: 20px; */
 }
@@ -163,6 +168,10 @@ a::selection {
   .time {
     font-style: italic;
     font-size: 12px;
+  }
+
+  .sent-msg {
+    max-width: 100%;
   }
 
   .user-name,

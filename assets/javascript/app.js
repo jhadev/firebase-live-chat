@@ -160,6 +160,8 @@ $(document).ready(function() {
         let timestamp = childSnapshot.val().timestamp;
         let avatar = childSnapshot.val().avatar;
         let localUid = localStorage.getItem("uid");
+        // let timeNow = moment()
+        // let diffTime = moment().diff(moment(timestamp), "minutes")
         const genRandomString = Math.random()
           .toString(36)
           .substr(2, 8);
@@ -201,7 +203,7 @@ $(document).ready(function() {
   });
 
   // click functions
-  $(".alert").on("click", event => {
+  $(".alert").on("click", () => {
     $(".alert").alert("close");
   });
 
@@ -210,10 +212,7 @@ $(document).ready(function() {
     packageMessage(textMax, handleErrors);
   });
 
-  $(document).on("click", ".log-in", event => {
-    event.preventDefault();
-    toggleSignIn();
-  });
+  $(document).on("click", ".log-in", toggleSignIn);
 
   $(document).on("click", ".input", event => {
     event.preventDefault();
@@ -231,17 +230,15 @@ $(document).ready(function() {
     checkTheme();
   });
 
-  $(document).on("click", ".email", event => {
+  $(document).on("click", ".email", () => {
     $(".modal").modal();
   });
 
-  $(document).on("click", "#upload", event => {
-    event.preventDefault();
+  $(document).on("click", "#upload", () => {
     widget.open();
   });
 
-  $(document).on("click", ".user-name", event => {
-    event.preventDefault();
+  $(document).on("click", ".user-name", () => {
     $(".user-name").tooltip();
   });
 
